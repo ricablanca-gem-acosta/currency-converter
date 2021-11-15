@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Currency Converter</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <form method="post">
+            <div class="row">
+                <div class="form-group col-sm-3">
+                    <label for="date">Date</label>
+                    <input class="form-control" type="date" id="date" name="date" max="{{ max_date }}"
+                        min="{{ min_date }}" value="{{ select_date }}">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="from">From</label>
+                    <select class="form-control" id="from" name="from">
+                        {% for currency in currencies %}
+                        {% if from_currency == currency %}
+                        <option value="{{ currency }}" selected>{{ currency.upper() + " - " + currencies[currency] }}</option>
+                        {% else %}
+                        <option value="{{ currency }}">{{ currency.upper() + " - " + currencies[currency] }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="to">To</label>
+                    <select class="form-control" id="to" name="to">
+                        {% for currency in currencies %}
+                        {% if to_currency == currency %}
+                        <option value="{{ currency }}" selected>{{ currency.upper() + " - " + currencies[currency] }}</option>
+                        {% else %}
+                        <option value="{{ currency }}">{{ currency.upper() + " - " + currencies[currency] }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <span class="col-sm-11">
+                    <button type="submit" class="btn btn-primary col-1">View Rate</button>
+                    <label>{{ conversion }}</label>
+                </span>
+            </div>
+        </form>
+
+    </div>
+
+</body>
+
+</html>
